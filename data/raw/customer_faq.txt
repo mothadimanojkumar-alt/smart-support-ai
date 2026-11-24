@@ -1,0 +1,23 @@
+
+COMPANY: SmartSupport Store
+
+FAQ 1: What are your business hours?
+Our customer support team is available Monday to Friday, from 9:00 AM to 6:00 PM.
+
+FAQ 2: How can I track my order?
+Customers can track their orders using the tracking link sent to their registered email address after shipment.
+
+FAQ 3: What is your return policy?
+Customers can return eligible products within 30 days of delivery. Products must be unused and in their original packaging.
+
+FAQ 4: How long does delivery take?
+Standard delivery usually takes 3 to 5 business days.
+
+FAQ 5: How can I contact customer support?
+Customers can contact our support team by emailing support@smartsupport.com.
+
+FAQ 6: What payment methods do you accept?
+We accept credit cards, debit cards, and PayPal.
+
+FAQ 7: Can I cancel my order?
+Customers can request cancellation before the order has been shipped. Once shipped, the return policy applies.
