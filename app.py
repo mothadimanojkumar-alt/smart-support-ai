@@ -1,6 +1,7 @@
 
 import streamlit as st
 import httpx
+import os
 
 # Page configuration
 st.set_page_config(
@@ -10,7 +11,10 @@ st.set_page_config(
 )
 
 # FastAPI address
-API_URL = "http://127.0.0.1:8000/ask"
+API_URL = os.getenv(
+    "API_URL",
+    "http://127.0.0.1:8000/ask"
+)
 
 # Application heading
 st.title("🤖 SmartSupport AI")

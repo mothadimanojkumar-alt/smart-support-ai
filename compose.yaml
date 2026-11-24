@@ -1,0 +1,31 @@
+
+services:
+  api:
+    build: .
+    container_name: smartsupport-api
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_HOST: http://host.docker.internal:11434
+    volumes:
+      - chroma_data:/app/chroma_db
+    command: >
+      sh -c "python -m src.vector_store &&
+             uvicorn api.main:app --host 0.0.0.0 --port 8000"
+
+  streamlit:
+    build: .
+    container_name: smartsupport-streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      API_URL: http://api:8000/ask
+    depends_on:
+      - api
+    command: >
+      streamlit run app.py
+      --server.address=0.0.0.0
+      --server.port=8501
+
+volumes:
+  chroma_data:

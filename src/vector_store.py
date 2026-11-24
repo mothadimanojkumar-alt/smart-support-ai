@@ -3,6 +3,7 @@ from pathlib import Path
 
 import chromadb
 import ollama
+import os
 
 
 # Project directory
@@ -16,6 +17,9 @@ DB_PATH = BASE_DIR / "chroma_db"
 
 # Model used to generate embeddings
 EMBEDDING_MODEL = "nomic-embed-text"
+OLLAMA_CLIENT = ollama.Client(
+    host=os.getenv("OLLAMA_HOST", "http://localhost:11434")
+)
 
 
 def load_faq_documents():
@@ -43,10 +47,11 @@ def create_vector_store():
     embeddings = []
 
     for document in documents:
-        response = ollama.embed(
-            model=EMBEDDING_MODEL,
-            input=document
-        )
+        response = OLLAMA_CLIENT.embed(
+    model=EMBEDDING_MODEL,
+    input=document
+)
+        
         embeddings.append(response["embeddings"][0])
 
     # Create a persistent ChromaDB database

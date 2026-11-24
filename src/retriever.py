@@ -3,12 +3,16 @@ from pathlib import Path
 
 import chromadb
 import ollama
+import os
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "chroma_db"
 
 EMBEDDING_MODEL = "nomic-embed-text"
+OLLAMA_CLIENT = ollama.Client(
+    host=os.getenv("OLLAMA_HOST", "http://localhost:11434")
+)
 
 
 def search_faq(question: str, number_of_results: int = 3):
@@ -20,10 +24,10 @@ def search_faq(question: str, number_of_results: int = 3):
     collection = client.get_collection(name="customer_faq")
 
     # Convert the customer's question into an embedding
-    response = ollama.embed(
-        model=EMBEDDING_MODEL,
-        input=question
-    )
+    response = OLLAMA_CLIENT.embed(
+    model=EMBEDDING_MODEL,
+    input=question
+)
 
     question_embedding = response["embeddings"][0]
 

@@ -1,8 +1,12 @@
 
 import ollama
+import os
 
 # Name of our embedding model
 EMBEDDING_MODEL = "nomic-embed-text"
+OLLAMA_CLIENT = ollama.Client(
+    host=os.getenv("OLLAMA_HOST", "http://localhost:11434")
+)
 
 
 def generate_embedding(text: str):
@@ -10,10 +14,10 @@ def generate_embedding(text: str):
     Convert text into a numerical embedding.
     """
 
-    response = ollama.embed(
-        model=EMBEDDING_MODEL,
-        input=text
-    )
+    response = OLLAMA_CLIENT.embed(
+    model=EMBEDDING_MODEL,
+    input=text
+)
 
     return response["embeddings"][0]
 

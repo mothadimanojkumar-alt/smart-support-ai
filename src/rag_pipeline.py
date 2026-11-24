@@ -1,9 +1,13 @@
 
 from .retriever import search_faq
 import ollama
+import os
 
 
 LLM_MODEL = "llama3.2:3b"
+OLLAMA_CLIENT = ollama.Client(
+    host=os.getenv("OLLAMA_HOST", "http://localhost:11434")
+)
 
 
 def generate_answer(question: str):
@@ -35,7 +39,8 @@ Answer:
 """
 
     # Step 4: Generate the answer using Ollama
-    response = ollama.chat(
+    
+    response = OLLAMA_CLIENT.chat(
         model=LLM_MODEL,
         messages=[
             {
@@ -44,6 +49,7 @@ Answer:
             }
         ]
     )
+
 
     return response["message"]["content"]
 
