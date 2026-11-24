@@ -1,5 +1,5 @@
 
-from retriever import search_faq
+from .retriever import search_faq
 import ollama
 
 
