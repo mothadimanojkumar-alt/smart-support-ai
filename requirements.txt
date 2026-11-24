@@ -1,0 +1,13 @@
+
+ollama
+chromadb
+langchain
+langchain-community
+langchain-ollama
+fastapi
+uvicorn
+streamlit
+python-dotenv
+pypdf
+pytest
+httpx
